@@ -1,0 +1,59 @@
+<div class="container">
+    <h4>Registro de categoria</h4>
+    <hr>
+</div>
+
+<form (ngSubmit)="saveCategoria(forma)" #forma="ngForm" novalidate="" enctype="multipart/form-data">
+    <div class="form-group-sm small">
+
+        <div class="row">
+            <div class="form-group col-md-12">
+
+                <div>
+                    <input [class.is-invalid]="strNombre.invalid && strNombre.touched"
+                        class="form-control form-control-sm" type="text " placeholder="Nombre de categoria" name="strNombre" [(ngModel)]="categoria.strNombre" required #strNombre="ngModel">
+                    <div class="invalid-feedback" *ngIf="strNombre.errors?.required">
+                        <h6>
+                            Es necesario ingresar un nombre de categoria.
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" class="form-control form-control-sm" type="text " placeholder="Descripcion de la categoria" name="strDescripcion" [(ngModel)]="categoria.strDescripcion" required #strDescripcion="ngModel"></textarea>
+                    <div class="invalid-feedback" *ngIf="strDescripcion.errors?.required">
+                        <h6>
+                            Es necesario ingresar una descripcion.
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <select [class.is-invalid]="blnStatus.invalid && blnStatus.touched" class="custom-select form-control form-control-sm" type="text" name="blnStatus" [(ngModel)]="categoria.blnStatus" required #blnStatus="ngModel">
+                        <option [ngValue]="true">Activo</option>
+                        <option [ngValue]="false">Inactivo</option>
+                    </select>
+                </div>
+
+                <div class="list-inline mt-3 text-right">
+                    <div class="list-inline-item">
+                        <div class="row">
+                            <div class="col-6 mt-1">
+                                <button [routerLink]="['/career-report']" type="button "
+                                    class="btn btn-danger"><i
+                                        class="fa fa-times mr-2"></i>Cancelar</button>
+                            </div>
+                            <div class="col-6 mt-1">
+                                <button [disabled]="forma.invalid" type="submit "
+                                    class="btn btn-success"><i
+                                        class="fa fa-save mr-2 "></i>Registrar</button>
+                                        </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</form>

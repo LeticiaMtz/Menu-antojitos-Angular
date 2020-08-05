@@ -1,0 +1,105 @@
+<div class="container">
+    <h4>Registro de platillo</h4>
+    <hr>
+</div>
+
+<form (ngSubmit)="savePlatillo(forma)" #forma="ngForm" novalidate="" enctype="multipart/form-data">
+    <div class="form-group-sm small">
+
+        <div class="row">
+            <div class="form-group col-md-12">
+                <div class="container">
+
+                <div>
+                        <select [ngClass]="{'is-invalid': idCategoria.errors?.required && forma.controls['idCategoria'].touched }" class="custom-select form-control form-control-sm" type="text" name="idCategoria" [(ngModel)]="platillo.idCategoria" required #idCategoria="ngModel">
+                            <option [ngValue]="undefined" hidden>Categoria</option>
+                            <option *ngFor="let categoria of categorias" [ngValue]="categoria._id" >{{categoria.strNombre}}</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="idCategoria.errors?.required">
+                            <h6>
+                            Es necesario ingresar una categoria.
+                            </h6>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <input [class.is-invalid]="strNombre.invalid && strNombre.touched"
+                        class="form-control form-control-sm" type="text " placeholder="Nombre del platillo" name="strNombre" [(ngModel)]="platillo.strNombre" required #strNombre="ngModel">
+                    <div class="invalid-feedback" *ngIf="strNombre.errors?.required">
+                        <h6>
+                            Es necesario ingresar un nombre.
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <input [class.is-invalid]="strDescripcion.invalid && strDescripcion.touched" 
+                        class="form-control form-control-sm" type="text " placeholder="Descripcion del platillo" name="strDescripcion" [(ngModel)]="platillo.strDescripcion" required #strDescripcion="ngModel">
+                    <div class="invalid-feedback" *ngIf="strDescripcion.errors?.required">
+                        <h6>
+                            Es necesario ingresar una descripcion.
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <input [class.is-invalid]="strIngredientes.invalid && strIngredientes.touched" 
+                        class="form-control form-control-sm" type="text " placeholder="Ingredientes del platillo" name="strIngredientes" [(ngModel)]="platillo.strIngredientes" required #strIngredientes="ngModel">
+                    <div class="invalid-feedback" *ngIf="strIngredientes.errors?.required">
+                        <h6>
+                            Es necesario ingresar los ingredientes.
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <input [class.is-invalid]="nmbPiezas.invalid && nmbPiezas.touched" 
+                        class="form-control form-control-sm" type="number " placeholder="Piezas" name="nmbPiezas" [(ngModel)]="platillo.nmbPiezas" required #nmbPiezas="ngModel">
+                    <div class="invalid-feedback" *ngIf="nmbPiezas.errors?.required">
+                        <h6>
+                            Es necesario ingresar las piezas.
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <input [class.is-invalid]="nmbPrecio.invalid && nmbPrecio.touched" 
+                        class="form-control form-control-sm" type="number " placeholder="Precio" name="nmbPrecio" [(ngModel)]="platillo.nmbPrecio" required #nmbPrecio="ngModel">
+                    <div class="invalid-feedback" *ngIf="nmbPrecio.errors?.required">
+                        <h6>
+                            Es necesario ingresar el precio.
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <select [class.is-invalid]="blnStatus.invalid && blnStatus.touched" class="custom-select form-control form-control-sm" type="text" name="blnStatus" [(ngModel)]="platillo.blnStatus" required #blnStatus="ngModel">
+                        <option [ngValue]="true" >Activo</option>
+                        <option [ngValue]="false">Inactivo</option>
+                    </select>
+                </div>
+
+            </div>
+
+                <div class="list-inline mt-3 text-right">
+                    <div class="list-inline-item">
+                        <div class="row">
+                            <div class="col-6 mt-1">
+                                <button [routerLink]="['/career-report']" type="button "
+                                    class="btn btn-danger"><i
+                                        class="fa fa-times mr-2"></i>Cancelar</button>
+                            </div>
+                            <div class="col-6 mt-1">
+                                <button [disabled]="forma.invalid" type="submit "
+                                    class="btn btn-success"><i
+                                        class="fa fa-save mr-2 "></i>Registrar</button>
+                                        </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</form>
